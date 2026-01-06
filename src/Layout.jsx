@@ -17,8 +17,6 @@ import { setUIPreference } from './services/uiPreferenceService';
 import getUserMenuItems from './utils/getUserMenuItems.ts';
 import messages from './messages';
 import App from './App';
-import store from 'data/store';
-import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
 
 // import { applyTheme } from './styles/themeLoader';
 
@@ -404,9 +402,7 @@ const Layout = () => {
   if (enableInContextSidebar) {
     return (
       <div className="frame-container-in-context">
-        <AppProvider store={store} wrapWithRouter={false}>
-            <App />
-        </AppProvider>;
+        <App />
       </div>
     );
   }
@@ -448,10 +444,10 @@ const Layout = () => {
           <div className="main-content">
             <div className="page-content">
               <Outlet />
-              <AppProvider store={store} wrapWithRouter={false}><App /></AppProvider>
+              <App />
             </div>
           </div>
-        </div>
+        </div> 
         {/* <div>
             <div className="footer-container">
               <Footer

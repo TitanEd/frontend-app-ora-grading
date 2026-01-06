@@ -97,7 +97,9 @@ const MainApp = () => {
 
   return (
     <AppProvider store={store} wrapWithRouter={false}>
-      {oldUI === 'true' ? <Router><App /></Router> : <Router><Layout /></Router>}
+      <Router>
+        {oldUI === 'true' ? <App /> : <Layout />}
+      </Router>
     </AppProvider>
   );
 };
