@@ -1,0 +1,280 @@
+/* Breadcrumb and Title styles */
+.ca-breadcrumb-bg {
+  width: 100%;
+  padding: 0.5rem 0 0 0;
+}
+
+.ca-breadcrumb-container {
+  margin: 0 auto;
+  padding: 1rem 0rem !important;
+}
+
+.ca-breadcrumb {
+  color: #b0b7c3;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.ca-breadcrumb .ca-breadcrumb-icon {
+  opacity: 0.7;
+
+  .custom-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
+.ca-breadcrumb .ca-breadcrumb-divider {
+  margin: 0 8px;
+}
+
+.ca-breadcrumb .ca-breadcrumb-current {
+  color: #6b7280;
+}
+
+.ca-title {
+  font-weight: 600;
+  font-size: 20px;
+  color: #22223b;
+}
+
+.container-fluid{
+    padding-top: 0 !important;
+    max-width: 1576px !important;
+    .pgn__hyperlink{
+        color: var(--primary);
+    }
+    p > a[href]:not(.btn){
+        color: var(--primary);
+    }
+    .pgn__form-checkbox-input:checked{
+        background-color: var(--bg-surface);
+    }
+}
+
+// popup styles for ORA Grading review modal (the "layer page")
+.review-modal {
+  max-width: 85vw !important;
+  max-height: 90vh !important;
+  width: 85vw !important;
+  height: 85vh !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  border-radius: 16px !important;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
+  background-color: var(--bg-surface) !important;
+
+  // Remove the dark overlay effect if needed (optional – keeps it cleaner)
+  .pgn__modal-header {
+    background-color: var(--bg-surface) !important;
+  }
+
+  // Close button – larger and more visible
+  .btn-icon.btn-icon-inverse-primary {
+    color: var(--primary);
+    &:hover {
+        color: var(--bg-surface) !important;
+    }
+  }
+  .pgn__modal-close-button {
+    &:hover {
+        background: var(--primary) !important;
+    }
+  }
+    .pgn__modal-body{
+        background: var(--bg-body) !important;
+    }
+
+  [dir="ltr"] .pgn__modal-body::after {
+    background-image: none !important;
+    }
+
+    .pgn__form-radio-input{
+        min-height: 1.25rem;
+    }
+    .pgn__form-control-decorator-group textarea.form-control {
+        margin-top: 0.5rem;
+    }
+}
+
+.pgn__data-table-wrapper{
+    .pgn__data-table-status-bar{
+        .pgn__data-table-status{
+            .pgn__data-table-status-left{
+                .pgn__smart-status{
+                    .btn-link{
+                        color: var(--primary)
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pgn__modal-content-container{
+    .pgn__modal{
+        div{
+            .review-actions{
+                padding: 1.5rem !important;
+            }
+        }
+    }
+}
+
+[dir="ltr"] #paragon-portal-root .pgn__modal-layer .pgn__modal-close-container{
+    top: 1rem !important;
+    right: 1.5rem !important;
+}
+
+.review-modal-body {
+  overflow-y: auto !important; 
+  height: auto; 
+
+  > .pgn__modal-body-content {
+    display: flex;
+    flex-direction: row; 
+    min-height: 100%; 
+    height: auto !important; 
+
+    > .content-block {
+      display: flex;
+      width: 100%;
+      gap: 1rem;
+      min-height: inherit;
+
+      .content-wrapper {
+        display: flex;
+        width: 100%;
+        min-height: inherit;
+
+        .row {
+          display: flex;
+          width: 100%;
+          min-height: inherit; 
+          justify-content: center;
+
+          .col {
+            flex: 0 0 72%;
+            max-width: 72%;
+            display: flex;
+            flex-direction: column;
+            min-height: inherit;
+
+            .response-display {
+              width: 100%;
+              padding: 0;
+              overflow: visible !important;
+              height: auto !important;
+              min-height: fit-content; 
+              flex-grow: 1; 
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+
+              .pgn__card {
+                width: 100%;
+                flex-grow: 1;
+                display: flex;
+                flex-direction: column;
+                min-height: fit-content;
+
+                .pgn__card-section.response-display-text-content {
+                  flex-grow: 1;
+                  overflow: visible !important;
+                  min-height: fit-content;
+                  white-space: pre-wrap;
+                  word-wrap: break-word;
+                  word-break: break-word; 
+                  hyphens: auto; 
+                }
+              }
+            }
+          }
+
+          .grading-rubric-card {
+            flex: 1;
+            overflow-y: auto;
+            // min-height: inherit;
+            align-self: stretch; 
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .review-modal-body {
+    position: relative; 
+
+    > .pgn__modal-body-content {
+      > .content-block {
+        .content-wrapper {
+          .row {
+            flex-direction: column;
+            position: relative;
+            .col {
+              flex: 0 0 100% !important;
+              max-width: 100% !important;
+              order: 2;
+              z-index: 1;
+            }
+
+            .grading-rubric-card {
+              flex: 0 0 100% !important;
+              max-width: 100% !important;
+              width: 100% !important;
+
+              order: 1;
+              position: absolute !important;
+              top: 0;
+              left: 0;
+              right: 0;         
+              z-index: 10000000;
+
+              max-height: 70vh;
+              overflow-y: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.flex-nowrap{
+    .grading-rubric-card{
+        .grading-rubric-footer{
+            box-shadow: none !important;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .review-modal{
+        max-width: 95vw !important;
+        max-height: 95vh !important;
+        width: 95vw !important;
+        height: 95vh !important;
+        z-index: 4001 !important;
+    }
+
+    .pgn__data-table-layout-wrapper {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    [dir="ltr"] .review-actions .review-actions-status {
+        margin-left: 0;
+    }
+    @media (max-width: 991.98px) {
+        .review-actions-username {
+            padding-bottom: 0.5rem;
+        }
+    }
+}
