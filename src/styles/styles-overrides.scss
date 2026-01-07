@@ -41,7 +41,16 @@
 
 .container-fluid{
     padding-top: 0 !important;
-    max-width: 1576px !important;
+    max-width: 1600px !important;
+    a{
+        padding-bottom: 0 !important;
+        padding-top: 0.5rem !important;
+    }
+    p{
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        margin-bottom: 0 !important;
+    }
     .pgn__hyperlink{
         color: var(--primary);
     }
@@ -130,9 +139,23 @@
     right: 1.5rem !important;
 }
 
+.content-wrapper{
+    .main-content{
+        .page-content{
+            div{
+                .course-header{
+                    margin-bottom: 0 !important;
+                }
+            }
+        }
+    }
+}
 .review-modal-body {
   overflow-y: auto !important; 
   height: auto; 
+  .content-block{
+    margin: 0 !important;
+  }
 
   > .pgn__modal-body-content {
     display: flex;
@@ -141,10 +164,10 @@
     height: auto !important; 
 
     > .content-block {
-      display: flex;
-      width: 100%;
-      gap: 1rem;
-      min-height: inherit;
+        display: flex;
+        width: 100%;
+        gap: 1rem;
+        min-height: inherit;
 
       .content-wrapper {
         display: flex;
