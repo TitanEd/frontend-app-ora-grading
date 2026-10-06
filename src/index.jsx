@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -16,17 +17,13 @@ import {
   getConfig,
 } from '@edx/frontend-platform';
 import { getMessages, IntlProvider } from '@edx/frontend-platform/i18n';
-import App from './App';
-import Layout from './Layout';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { dynamicTheme } from 'titaned-frontend-library';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Layout from './Layout';
+import App from './App';
 
 import messages from './i18n';
-
-
-
-
 
 const loadStylesForNewUI = (isOldUI) => {
   document.body.className = isOldUI ? 'old-ui' : 'new-ui';
@@ -61,7 +58,6 @@ const MainApp = () => {
           if (localStorageValue !== apiOldUIValue) {
             localStorage.setItem('oldUI', apiOldUIValue);
             window.location.reload();
-            return;
           }
         } else {
           setMenuConfig({});
@@ -88,7 +84,7 @@ const MainApp = () => {
   }, [oldUI]);
 
   useEffect(() => {
-    if (oldUI !== null) loadStylesForNewUI(oldUI === 'true');
+    if (oldUI !== null) { loadStylesForNewUI(oldUI === 'true'); }
   }, [oldUI]);
 
   if (loading || menuConfig === null) {
@@ -104,7 +100,6 @@ const MainApp = () => {
   );
 };
 
-
 subscribe(APP_READY, () => {
   const root = createRoot(document.getElementById('root'));
 
@@ -116,7 +111,6 @@ subscribe(APP_READY, () => {
     </StrictMode>,
   );
 });
-
 
 // subscribe(APP_READY, () => {
 //   ReactDOM.render(

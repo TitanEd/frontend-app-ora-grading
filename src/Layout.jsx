@@ -89,9 +89,9 @@ const Layout = () => {
     const fetchUserMenu = async () => {
       try {
         const response = await getAuthenticatedHttpClient().get(
-          `${getConfig().LMS_BASE_URL}/titaned/api/v1/user-dropdown-menu/`
+          `${getConfig().LMS_BASE_URL}/titaned/api/v1/user-dropdown-menu/`,
         );
-        if (response.data) setUserMenuItemsFromAPI(response.data);
+        if (response.data) { setUserMenuItemsFromAPI(response.data); }
       } catch (err) {
         console.error('Failed to load user menu from API', err);
         setUserMenuItemsFromAPI({});
@@ -100,12 +100,15 @@ const Layout = () => {
     fetchUserMenu();
   }, []);
 
-
   // useEffect(() => {
   //   const fetchUserMenuItemsFromAPI = async () => {
   //     try {
-  //       const response = await getAuthenticatedHttpClient().get(`${getConfig().LMS_BASE_URL}/titaned/api/v1/user-dropdown-menu/`);
-  //       // const response = await getAuthenticatedHttpClient().get('LMS_API_DOMAIN/titaned/api/v1/user-dropdown-menu/');
+  //       const response = await getAuthenticatedHttpClient().get(
+  //         `${getConfig().LMS_BASE_URL}/titaned/api/v1/user-dropdown-menu/`,
+  //       );
+  //       // const response = await getAuthenticatedHttpClient().get(
+  //       //   'LMS_API_DOMAIN/titaned/api/v1/user-dropdown-menu/',
+  //       // );
   //       const { data } = response;
   //       if (data) {
   //         setUserMenuItemsFromAPI(data);
@@ -120,7 +123,6 @@ const Layout = () => {
   //   fetchUserMenuItemsFromAPI();
   // }, []);
 
-
   const updatedAuthenticatedUser = {
     ...authenticatedUser,
     username: userMenuItemsFromAPI?.username || authenticatedUser?.username,
@@ -128,7 +130,6 @@ const Layout = () => {
       ? userMenuItemsFromAPI.profile_image.image_url_small
       : authenticatedUser?.avatar,
   };
-
 
   const userMenuItems = getUserMenuItems({
     lmsBaseUrl: LMS_BASE_URL,
@@ -374,6 +375,8 @@ const Layout = () => {
     return () => {
       isMounted = false;
     };
+    // Menu labels are captured once on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleNavigate = async (path) => {
@@ -447,7 +450,7 @@ const Layout = () => {
               <App />
             </div>
           </div>
-        </div> 
+        </div>
         {/* <div>
             <div className="footer-container">
               <Footer

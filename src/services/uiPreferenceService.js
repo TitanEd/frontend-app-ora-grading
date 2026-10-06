@@ -17,7 +17,6 @@ export const getUIPreference = async () => {
   }
 
   try {
-    
     const response = await getAuthenticatedHttpClient().get(
       `${getConfig().STUDIO_BASE_URL}/titaned/api/v1/menu-config/`,
     );
@@ -26,10 +25,10 @@ export const getUIPreference = async () => {
       const useNewUI = response.data.use_new_ui === true;
       cachedUIPreference = useNewUI;
       isInitialized = true;
-      
+
       // Update localStorage for plugin config compatibility
       localStorage.setItem('oldUI', useNewUI ? 'false' : 'true');
-      
+
       return useNewUI;
     }
 
@@ -56,7 +55,6 @@ export const getUIPreference = async () => {
  */
 export const setUIPreference = async (useNewUI) => {
   try {
-    
     const response = await getAuthenticatedHttpClient().post(
       `${getConfig().STUDIO_BASE_URL}/titaned/api/v1/set_ui_preference/`,
       {
@@ -68,7 +66,7 @@ export const setUIPreference = async (useNewUI) => {
       // Update cache and localStorage
       cachedUIPreference = useNewUI;
       localStorage.setItem('oldUI', useNewUI ? 'false' : 'true');
-      
+
       return true;
     }
 

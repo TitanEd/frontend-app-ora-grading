@@ -17,40 +17,40 @@ import Head from './components/Head';
 import { mathJaxConfig } from './utils';
 
 export const App = ({ courseMetadata, isEnabled }) => (
-    <div>
-      <Head />
-      <PluginSlot
-        id="ora_header_plugin_slot"
-        pluginProps={{
-          courseTitle: courseMetadata.title,
-        }}
-      >
-        <Header
-          courseTitle={courseMetadata.title}
-          courseNumber={courseMetadata.number}
-          courseOrg={courseMetadata.org}
-          data-testid="header"
-        />
-      </PluginSlot>
-      {!isEnabled && <DemoWarning />}
-      <PluginSlot
-        id="ora_banner_plugin_slot"
-        pluginProps={{
-        }}
+  <div>
+    <Head />
+    <PluginSlot
+      id="ora_header_plugin_slot"
+      pluginProps={{
+        courseTitle: courseMetadata.title,
+      }}
+    >
+      <Header
+        courseTitle={courseMetadata.title}
+        courseNumber={courseMetadata.number}
+        courseOrg={courseMetadata.org}
+        data-testid="header"
       />
-      <main data-testid="main">
-        <MathJaxContext config={mathJaxConfig}>
-          <ListView />
-        </MathJaxContext>
-      </main>
-      <PluginSlot
-        id="ora_footer_plugin_slot"
-        pluginProps={{
-        }}
-      >
-        <FooterSlot />
-      </PluginSlot>
-    </div>
+    </PluginSlot>
+    {!isEnabled && <DemoWarning />}
+    <PluginSlot
+      id="ora_banner_plugin_slot"
+      pluginProps={{
+      }}
+    />
+    <main data-testid="main">
+      <MathJaxContext config={mathJaxConfig}>
+        <ListView />
+      </MathJaxContext>
+    </main>
+    <PluginSlot
+      id="ora_footer_plugin_slot"
+      pluginProps={{
+      }}
+    >
+      <FooterSlot />
+    </PluginSlot>
+  </div>
 );
 App.defaultProps = {
   courseMetadata: {
