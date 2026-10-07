@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import { FooterSlot } from '@edx/frontend-component-footer';
 import { LearningHeader as Header } from '@edx/frontend-component-header';
@@ -11,30 +10,47 @@ import { selectors } from 'data/redux';
 import DemoWarning from 'containers/DemoWarning';
 import ListView from 'containers/ListView';
 import { MathJaxContext } from 'better-react-mathjax';
+import { PluginSlot } from '@openedx/frontend-plugin-framework';
 
 import './App.scss';
 import Head from './components/Head';
 import { mathJaxConfig } from './utils';
 
 export const App = ({ courseMetadata, isEnabled }) => (
-  <Router>
-    <div>
-      <Head />
+  <div>
+    <Head />
+    <PluginSlot
+      id="ora_header_plugin_slot"
+      pluginProps={{
+        courseTitle: courseMetadata.title,
+      }}
+    >
       <Header
         courseTitle={courseMetadata.title}
         courseNumber={courseMetadata.number}
         courseOrg={courseMetadata.org}
         data-testid="header"
       />
-      {!isEnabled && <DemoWarning />}
-      <main data-testid="main">
-        <MathJaxContext config={mathJaxConfig}>
-          <ListView />
-        </MathJaxContext>
-      </main>
+    </PluginSlot>
+    {!isEnabled && <DemoWarning />}
+    <PluginSlot
+      id="ora_banner_plugin_slot"
+      pluginProps={{
+      }}
+    />
+    <main data-testid="main">
+      <MathJaxContext config={mathJaxConfig}>
+        <ListView />
+      </MathJaxContext>
+    </main>
+    <PluginSlot
+      id="ora_footer_plugin_slot"
+      pluginProps={{
+      }}
+    >
       <FooterSlot />
-    </div>
-  </Router>
+    </PluginSlot>
+  </div>
 );
 App.defaultProps = {
   courseMetadata: {

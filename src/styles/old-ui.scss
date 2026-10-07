@@ -1,0 +1,7 @@
+// Paragon 23 (Verawood) no longer ships SCSS core at the Sumac paths. Paragon and brand
+// styles load globally as CSS (PARAGON_THEME_URLS / frontend-build), so the old UI
+// needs no extra imports here. Sumac imports kept for reference:
+// @import "~@edx/brand/paragon/fonts.scss";
+// @import "~@edx/brand/paragon/variables.scss";
+// @import "~@openedx/paragon/scss/core/core.scss";
+// @import "~@edx/brand/paragon/overrides.scss";
