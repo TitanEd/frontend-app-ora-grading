@@ -1,0 +1,96 @@
+// Custom ORA grading shell layout. Max-width and L/R padding for page content
+// come from brand tels-content-width on .course-header / main > .container-fluid
+// (--pgn-size-container-max-width-xl, --pgn-spacing-grid-gutter-width).
+// Do not hardcode content-column width/padding here.
+
+// MainHeader footprint shared across custom MFE shells (no Paragon chrome-height token).
+$tels-custom-header-height: 6.25rem; // 100px
+
+html,
+body {
+  overflow: hidden !important;
+}
+
+html body {
+  font-family: var(--pgn-typography-font-family-base);
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.sidebar-loading {
+  height: 100%;
+  width: var(--pgn-spacing-spacer-5-5, 4rem);
+  padding-top: var(--pgn-spacing-spacer-3, 1rem);
+}
+
+.main-content {
+  flex: 1;
+  padding-left: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: calc(100vh - #{$tels-custom-header-height});
+  background-color: var(--bg-body, var(--pgn-color-primary-light));
+
+  .page-content {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  main[data-testid='main'] {
+    outline: none;
+  }
+}
+
+.pgn-btn-active {
+  color: var(--pgn-color-text-base);
+  background-color: var(--pgn-color-light-300);
+  border-color: transparent;
+}
+
+.btn-tertiary:focus::before {
+  border: solid 2px transparent;
+}
+
+.sidebar-container {
+  overflow-y: auto;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  height: calc(100vh - 0px);
+
+  @media (max-height: 43.125rem) {
+    height: calc(100vh - var(--pgn-spacing-spacer-5, 3rem));
+  }
+}
+
+.sidebar-container::-webkit-scrollbar {
+  width: 4px;
+  z-index: 10;
+}
+
+.sidebar-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb {
+  background-color: var(--pgn-color-gray-300);
+  border-radius: 4px;
+}
+
+.sidebar-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--pgn-color-gray-500);
+}

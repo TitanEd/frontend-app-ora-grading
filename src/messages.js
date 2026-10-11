@@ -56,10 +56,10 @@ const messages = defineMessages({
     defaultMessage: 'Assignments',
     description: 'Title of the Assignments sidebar item',
   },
-  sidebarSwitchToOldViewTitle: {
-    id: 'sidebar.switch-to-old-view.title',
-    defaultMessage: 'Switch to Old View',
-    description: 'Title of the switch to old view sidebar item',
+  loadingScreenReader: {
+    id: 'oraGrading.page.loading.sr',
+    defaultMessage: 'Loading',
+    description: 'Screen reader text for the page loading spinner',
   },
 });
 
