@@ -1,68 +1,102 @@
-/* Breadcrumb and Title styles */
+/* Breadcrumb and Title styles — typography/spacing from Paragon design tokens. */
 .ca-breadcrumb-bg {
   width: 100%;
-  padding: 0.5rem 0 0 0;
+  padding: var(--pgn-spacing-spacer-2, 0.5rem) 0 0 0;
 }
 
 .ca-breadcrumb-container {
   margin: 0 auto;
-  padding: 1rem 0rem !important;
+  padding: var(--pgn-spacing-spacer-3, 1rem) 0 !important;
 }
 
 .ca-breadcrumb {
-  color: #b0b7c3;
-  font-size: 14px;
-  margin-bottom: 8px;
+  color: var(--pgn-color-text-muted);
+  font-size: var(--pgn-typography-font-size-sm);
+  margin-bottom: var(--pgn-spacing-spacer-2, 0.5rem);
 }
 
 .ca-breadcrumb .ca-breadcrumb-icon {
   opacity: 0.7;
 
   .custom-icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 4px;
+    width: var(--pgn-size-icon-sm, 1rem);
+    height: var(--pgn-size-icon-sm, 1rem);
+    margin-right: var(--pgn-spacing-spacer-1, 0.25rem);
+  }
+
+  &:hover {
+    color: var(--primary) !important;
+    cursor: pointer;
   }
 }
 
 .ca-breadcrumb .ca-breadcrumb-divider {
-  margin: 0 8px;
+  margin: 0 var(--pgn-spacing-spacer-2, 0.5rem);
 }
 
 .ca-breadcrumb .ca-breadcrumb-current {
-  color: #6b7280;
+  color: var(--pgn-color-text-muted);
 }
 
 .ca-title {
-  font-weight: 600;
-  font-size: 20px;
-  color: #22223b;
+  font-weight: var(--pgn-typography-font-weight-semi-bold);
+  font-size: var(--pgn-typography-font-size-h4-base, var(--pgn-typography-font-size-h3-base));
+  color: var(--pgn-color-text-base);
 }
 
-.container-fluid{
-    padding-top: 0 !important;
-    max-width: 1600px !important;
-    a{
-        padding-bottom: 0 !important;
-        padding-top: 0.5rem !important;
+// Max-width + L/R pad come from brand tels-content-width
+// (main[data-testid="main"] > .py-4.container-fluid). Do not hardcode 1600px.
+.container-fluid {
+  padding-top: 0 !important;
+
+  // Only the "Back to responses" link — not the title launch icon (keeps title + icon on one line).
+  > a.pgn__hyperlink {
+    padding-bottom: 0 !important;
+    padding-top: var(--pgn-spacing-spacer-2, 0.5rem) !important;
+  }
+
+  p {
+    padding-top: var(--pgn-spacing-spacer-3, 1rem) !important;
+    padding-bottom: var(--pgn-spacing-spacer-3, 1rem) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .pgn__hyperlink {
+    color: var(--primary);
+  }
+
+  p > a[href]:not(.btn) {
+    color: var(--primary);
+  }
+
+  .pgn__form-checkbox-input:checked {
+    background-color: var(--bg-surface);
+  }
+
+  // ORA title + external-launch icon on one baseline.
+  .ora-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--pgn-spacing-spacer-2, 0.5rem);
+
+    .h3 {
+      margin-bottom: 0;
+      line-height: var(--pgn-typography-line-height-base, 1.2);
     }
-    p{
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
-        margin-bottom: 0 !important;
+
+    .ora-title-launch {
+      display: inline-flex;
+      align-items: center;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      line-height: 1;
     }
-    .pgn__hyperlink{
-        color: var(--primary);
-    }
-    p > a[href]:not(.btn){
-        color: var(--primary);
-    }
-    .pgn__form-checkbox-input:checked{
-        background-color: var(--bg-surface);
-    }
+  }
 }
 
-// popup styles for ORA Grading review modal (the "layer page")
+// popup styles for ORA Grading review modal (the "layer page") — sumac.1 custom
+// sizing kept; radius/surface from design tokens where available.
 .review-modal {
   max-width: 85vw !important;
   max-height: 90vh !important;
@@ -72,9 +106,12 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  border-radius: 16px !important;
+  border-radius: var(--pgn-size-modal-content-border-radius, var(--pgn-size-border-radius-lg)) !important;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: var(
+    --pgn-elevation-modal-content-box-shadow-sm-up,
+    0 1.25rem 2.5rem rgba(0, 0, 0, 0.25)
+  ) !important;
   background-color: var(--bg-surface) !important;
 
   // Remove the dark overlay effect if needed (optional – keeps it cleaner)
@@ -300,4 +337,110 @@
             padding-bottom: 0.5rem;
         }
     }
+}
+
+// ---------------------------------------------------------------------------
+// Custom UI shapes and sizes from the design tokens (--pgn-*).
+.tels-custom-ora-grading {
+  // Shapes and sizes: titaned-frontend-library hardcodes these for Paragon /
+  // Bootstrap components (e.g. 1rem radios against Paragon's 20px min-width,
+  // which drew them as ovals). Use the design tokens instead.
+  .pgn__form-checkbox-input,
+  .pgn__form-radio-input {
+    width: var(--pgn-size-form-control-indicator-base);
+    height: var(--pgn-size-form-control-indicator-base);
+    min-width: var(--pgn-size-form-control-indicator-base);
+    min-height: var(--pgn-size-form-control-indicator-base);
+    flex-shrink: 0;
+  }
+
+  .pgn__form-radio-input {
+    border-radius: 50%;
+  }
+
+  // Focused/selected Paragon Menu item: brand tint from the existing
+  // primary-light token (the menu token keeps its Paragon default).
+  .pgn__menu-item:focus {
+    background-color: var(--pgn-color-primary-light);
+  }
+
+  // Indicator centered on its label (Paragon offsets it with a fixed
+  // margin-top, which drifts when the label font/line-height changes).
+  // Options with a description keep the top alignment.
+  .pgn__form-checkbox:not(:has(.pgn__form-control-description)),
+  .pgn__form-radio:not(:has(.pgn__form-control-description)) {
+    display: flex;
+    align-items: center;
+
+    > .pgn__form-checkbox-input,
+    > .pgn__form-radio-input {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .pgn__form-label {
+      margin-bottom: 0;
+    }
+  }
+
+  // Page content and modals only: the header/sidebar keep their own shapes
+  // (pill language selector, user menu).
+  .main-content,
+  .pgn__modal-layer {
+    .btn:not(.btn-icon) {
+      border-radius: var(--pgn-size-btn-border-radius-base) !important;
+    }
+
+    .btn-sm:not(.btn-icon) {
+      border-radius: var(--pgn-size-btn-border-radius-sm) !important;
+    }
+
+    .btn-lg:not(.btn-icon) {
+      border-radius: var(--pgn-size-btn-border-radius-lg) !important;
+    }
+
+    // Button groups stay joined (only the outer corners are rounded).
+    .btn-group > .btn:not(:last-child):not(.dropdown-toggle):not(.btn-icon),
+    .btn-group > .btn-group:not(:last-child) > .btn:not(.btn-icon) {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+    .btn-group > .btn:not(:first-child):not(.btn-icon),
+    .btn-group > .btn-group:not(:first-child) > .btn:not(.btn-icon) {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+
+    .form-control,
+    .pgn__form-control-decorator-group .form-control {
+      border-radius: var(--pgn-size-form-input-radius-border-base);
+    }
+
+    .card,
+    .pgn__card {
+      border-radius: var(--pgn-size-card-border-radius-base);
+    }
+
+    .badge {
+      border-radius: var(--pgn-size-badge-border-radius-base);
+    }
+
+    .alert {
+      border-radius: var(--pgn-size-alert-border-radius);
+    }
+
+    .dropdown-menu {
+      border-radius: var(--pgn-size-dropdown-border-radius-base);
+    }
+
+    .modal-content,
+    .pgn__modal {
+      border-radius: var(--pgn-size-modal-content-border-radius);
+    }
+
+    .pgn__selectable_box {
+      border-radius: var(--pgn-size-border-radius-base);
+    }
+  }
 }

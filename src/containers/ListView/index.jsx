@@ -44,7 +44,13 @@ export class ListView extends React.Component {
         {hasError && <ListError />}
         {!isLoaded && !hasError && (
           <div className="w-100 h-100 text-center">
-            <Spinner animation="border" variant="primary" />
+            <Spinner
+              animation="border"
+              variant="primary"
+              screenReaderText={(
+                <FormattedMessage {...messages.loadingResponses} />
+              )}
+            />
             <h4>
               <FormattedMessage {...messages.loadingResponses} />
             </h4>
