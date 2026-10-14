@@ -11,6 +11,16 @@ const messages = defineMessages({
     defaultMessage: 'Create New Course',
     description: 'Title of the create new course sidebar item',
   },
+  sidebarMyAssessmentsTitle: {
+    id: 'sidebar.my-assessments.title',
+    defaultMessage: 'My Assessments',
+    description: 'Title of the my assessments sidebar item',
+  },
+  sidebarMyAchievementsTitle: {
+    id: 'sidebar.my-achievements.title',
+    defaultMessage: 'My Achievements',
+    description: 'Title of the my achievements sidebar item',
+  },
   sidebarMyCoursesTitle: {
     id: 'sidebar.my-courses.title',
     defaultMessage: 'My Courses',

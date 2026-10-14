@@ -2,7 +2,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { Spinner } from '@openedx/paragon';
-import { Home, LmsBook } from '@openedx/paragon/icons';
+import {
+  Assignment, EmojiEvents, Home, LmsBook,
+} from '@openedx/paragon/icons';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 // Installed from package.json. Run npm install before lint/build if this stays unresolved.
 // eslint-disable-next-line import/no-unresolved
@@ -16,7 +18,9 @@ import { AppContext } from '@edx/frontend-platform/react';
 import CustomApp from './CustomApp';
 import customGetUserMenuItems from './utils/customGetUserMenuItems';
 import getLearnerDashboardUrl from './utils/getLearnerDashboardUrl';
+import { useSiteFeatures, withSiteFeatures } from './useSiteFeatures';
 import messages from './messages';
+import HeaderExtras, { headerUser } from './customHeaderExtras';
 
 // Custom UI styles load after the stock Verawood styles (as in the previous
 // version), so on equal specificity the custom rules win.
@@ -63,7 +67,9 @@ const CustomLayout = () => {
   const [userMenuItemsFromAPI, setUserMenuItemsFromAPI] = useState({});
 
   // Sidebar items open pages of the learner dashboard MFE.
-  const sidebarItems = [
+  // "My Assessments" and "My Achievements" are features a site may not have (useSiteFeatures.js).
+  const siteFeatures = useSiteFeatures();
+  const sidebarItems = withSiteFeatures([
     {
       label: intl.formatMessage(messages.sidebarDashboardTitle),
       path: '/',
@@ -74,7 +80,19 @@ const CustomLayout = () => {
       path: '/my-courses',
       icon: <LmsBook />,
     },
-  ];
+    {
+      label: intl.formatMessage(messages.sidebarMyAssessmentsTitle),
+      path: '/assessments',
+      feature: 'assessment_center',
+      icon: <Assignment />,
+    },
+    {
+      label: intl.formatMessage(messages.sidebarMyAchievementsTitle),
+      path: '/achievements',
+      feature: 'gamification',
+      icon: <EmojiEvents />,
+    },
+  ], siteFeatures);
 
   useEffect(() => {
     document.documentElement.classList.add(CUSTOM_UI_CLASS);
@@ -125,13 +143,8 @@ const CustomLayout = () => {
     };
   }, []);
 
-  const updatedAuthenticatedUser = {
-    ...authenticatedUser,
-    username: userMenuItemsFromAPI?.username || authenticatedUser?.username,
-    avatar: userMenuItemsFromAPI?.profile_image?.has_image
-      ? userMenuItemsFromAPI.profile_image.image_url_small
-      : authenticatedUser?.avatar,
-  };
+  // Full name and profile picture, as the header shows them (customHeaderExtras.jsx).
+  const updatedAuthenticatedUser = headerUser(authenticatedUser, userMenuItemsFromAPI);
 
   const userMenuItems = customGetUserMenuItems({
     intl,
@@ -170,6 +183,7 @@ const CustomLayout = () => {
             headerButtons={headerButtons}
             languageSelectorList={languageSelectorList}
           />
+          <HeaderExtras />
         </div>
         <div className="content-wrapper">
           <div className="sidebar-container">

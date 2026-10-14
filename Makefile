@@ -49,9 +49,10 @@ pull_translations:
 	           translations/frontend-component-header/src/i18n/messages:frontend-component-header \
 	           translations/frontend-platform/src/i18n/messages:frontend-platform \
 	           translations/paragon/src/i18n/messages:paragon \
+	           translations/frontend-plugin-notifications/src/i18n/messages:frontend-plugin-notifications \
 	           translations/frontend-app-ora-grading/src/i18n/messages:frontend-app-ora-grading
 
-	$(intl_imports) frontend-component-footer frontend-component-header frontend-platform paragon frontend-app-ora-grading
+	$(intl_imports) frontend-plugin-notifications frontend-component-footer frontend-component-header frontend-platform paragon frontend-app-ora-grading
 
 # This target is used by CI.
 validate-no-uncommitted-package-lock-changes:
