@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { Spinner } from '@openedx/paragon';
 import {
-  Assignment, EmojiEvents, Home, LmsBook,
+  Assignment, Calendar, EmojiEvents, Home, LmsBook, VideoCall,
 } from '@openedx/paragon/icons';
 import { BrowserRouter as Router, useLocation } from 'react-router-dom';
 // Installed from package.json. Run npm install before lint/build if this stays unresolved.
@@ -67,7 +67,7 @@ const CustomLayout = () => {
   const [userMenuItemsFromAPI, setUserMenuItemsFromAPI] = useState({});
 
   // Sidebar items open pages of the learner dashboard MFE.
-  // "My Assessments" and "My Achievements" are features a site may not have (useSiteFeatures.js).
+  // Entries with a `feature` are sold features a site may not have (useSiteFeatures.js).
   const siteFeatures = useSiteFeatures();
   const sidebarItems = withSiteFeatures([
     {
@@ -85,6 +85,18 @@ const CustomLayout = () => {
       path: '/assessments',
       feature: 'assessment_center',
       icon: <Assignment />,
+    },
+    {
+      label: intl.formatMessage(messages.sidebarMyMeetingsTitle),
+      path: '/meetings',
+      feature: 'zoom_integration',
+      icon: <VideoCall />,
+    },
+    {
+      label: intl.formatMessage(messages.sidebarMyCalendarTitle),
+      path: '/calendar',
+      feature: 'calendar',
+      icon: <Calendar />,
     },
     {
       label: intl.formatMessage(messages.sidebarMyAchievementsTitle),
